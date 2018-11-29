@@ -470,7 +470,7 @@ public class wybor_grupy extends AppCompatActivity {
             public void onClick(View v) {
                 LinearLayout linearLayout1= findViewById(R.id.linearLayout1);
                 dodaj_grupe();
-                //dodawanie grupy do bazyh
+                //dodawanie grupy do bazy danychhjgkjh
                 EditText nazwagrupy = findViewById(R.id.nazwagrupy);
                 String nazwagrupy1 = nazwagrupy.getText().toString();
                 String nazwagrupy_ost = nazwagrupy1+"/test123";
