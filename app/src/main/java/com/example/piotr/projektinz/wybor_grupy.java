@@ -40,6 +40,9 @@ public class wybor_grupy extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference mDatabaseReference;
     DatabaseReference dbref;
+    //public EditText nazwagrupy = findViewById(R.id.nazwagrupy);
+    //public String nazwagrupy1 = nazwagrupy.getText().toString();
+    //public String nazwagrupy_ost = nazwagrupy1+"/test123";
 
 
     @Override
@@ -49,6 +52,8 @@ public class wybor_grupy extends AppCompatActivity {
         addListenerButton();
         LinearLayout linearLayout1= findViewById(R.id.linearLayout1);
         linearLayout1.setVisibility(View.INVISIBLE);
+
+
 
 
         final Button Inf_1_rok= findViewById(R.id.Inf_1_rok);
@@ -465,34 +470,36 @@ public class wybor_grupy extends AppCompatActivity {
             public void onClick(View v) {
                 LinearLayout linearLayout1= findViewById(R.id.linearLayout1);
                 dodaj_grupe();
-                EditText nazwagrupy = findViewById(R.id.nazwagrupy);
-
-                nazwagrupy.getText().toString();
                 //dodawanie grupy do bazy
+                EditText nazwagrupy = findViewById(R.id.nazwagrupy);
+                String nazwagrupy1 = nazwagrupy.getText().toString();
+                String nazwagrupy_ost = nazwagrupy1+"/test123";
+
                 mFirebaseDatabase = FirebaseDatabase.getInstance();
-                mDatabaseReference = mFirebaseDatabase.getReference("asd");
+                mDatabaseReference = mFirebaseDatabase.getReference(nazwagrupy_ost);
                 Map<String,String> map = new HashMap<>();
                 map.put("name","Administrator");
                 map.put("text","Nowa grupa została utworzona");
                 mDatabaseReference.setValue(map);
                 linearLayout1.setVisibility(View.INVISIBLE);
-                Toast.makeText(wybor_grupy.this,"Grupa została utworzona",10);
+                Toast.makeText(wybor_grupy.this,"Grupa została utworzona",10).show();
             }
         });
 
     }
     public void dodaj_grupe() {
         final Button button = new Button(this);
-        final Button EiT_1_rok = findViewById(R.id.EiT_1_rok);
+        final Button EiT_Menu = findViewById(R.id.EiT_menu);
+
         ConstraintLayout layout = findViewById(R.id.constraintlayout);
         ConstraintSet set = new ConstraintSet();
         set.clone(layout);
         button.setText("1");
         button.setId(110);
         layout.addView(button);
-        set.connect(button.getId(), ConstraintSet.TOP, EiT_1_rok.getId(), ConstraintSet.BOTTOM, 25);
-        set.connect(button.getId(), ConstraintSet.RIGHT, EiT_1_rok.getId(), ConstraintSet.RIGHT, 0);
-        set.connect(button.getId(),ConstraintSet.LEFT,EiT_1_rok.getId(),ConstraintSet.LEFT,0);
+        set.connect(button.getId(), ConstraintSet.TOP, EiT_Menu.getId(), ConstraintSet.BOTTOM, 25);
+        set.connect(button.getId(), ConstraintSet.RIGHT, EiT_Menu.getId(), ConstraintSet.RIGHT, 0);
+        set.connect(button.getId(),ConstraintSet.LEFT,EiT_Menu.getId(),ConstraintSet.LEFT,0);
         set.constrainHeight(button.getId(), 170);
         set.applyTo(layout);
         button.setVisibility(View.VISIBLE);
